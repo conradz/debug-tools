@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>jQuery Key Tester</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/css/bootstrap.min.css">
+
+    <style>
+        #container {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        #output {
+            max-width: 500px;
+        }
+
+        @media(min-width: 1024px) {
+            #container {
+                position: relative;
+                padding-left: 240px;
+            }
+
+            #sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 200px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>jQuery Key Tester</h1>
+            <p>
+                <a href=".">&larr; Back to utilities</a><br>
+                Using jQuery 1.8.3
+            </p>
+        </header>
+
+        <div id="sidebar">
+            <form id="settings">
+                <label class="checkbox">
+                    <input type="checkbox" id="prevent"> Prevent default
+                </label>
+
+                <label for="testInput">Dummy Text Input</label>
+                <input class="input-block-level" type="text" id="testInput" autofocus>
+            </form>
+        </div>
+
+        <div>
+            <table class="table table-bordered table-striped" id="output">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Key Data</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script>
+    <script>
+    (function($) {
+        var prevent, output, header;
+
+        function handler(e) {
+            if (prevent.prop("checked")) {
+                e.preventDefault();
+            }
+
+            var data = [
+                "{ which: ", e.which, ", keyCode: ", e.keyCode, ", charCode: ", e.charCode, " }"
+            ].join("");
+
+            var row = $("<tr>")
+                .append($("<td>").text(e.type), $("<td>").text(data))
+                .appendTo(output);
+
+            row = row[0];
+            if (row.scrollIntoView) {
+                row.scrollIntoView(false);
+            }
+        }
+
+        $(function() {
+            prevent = $("#prevent");
+            output = $("#output tbody");
+            header = $("header");
+
+            $(window).on("keydown keypress keyup", handler);
+
+            $("#testInput").val("");
+            $("#settings").on("submit", function(e) {
+                e.preventDefault();
+            });
+        });
+    }(jQuery));
+    </script>
+</body>
+</html>
