@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>jQuery Key Tester</title>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css">
-
+    <title>Key Events</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.1.2/css/foundation.min.css">
     <style>
         #container {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 20px;
+            padding: 10px;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         #output {
-            max-width: 500px;
+            width: 100%;
         }
 
-        @media(min-width: 1024px) {
+        .jquery-version {
+            margin: 10px 0;
+        }
+
+        @media (min-width: 700px) {
             #container {
-                position: relative;
-                padding-left: 240px;
+                padding-right: 210px;
             }
 
-            #sidebar {
+            #settings {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 200px;
-                padding: 20px;
+                right: 50%;
+                margin-right: -340px;
+                top: 10px;
+                width: 180px;
             }
         }
     </style>
@@ -37,11 +38,11 @@
 <body>
     <div id="container">
         <header>
-            <h1>jQuery Key Tester</h1>
-            <p>
-                <a href=".">&larr; Back to utilities</a><br>
-                Using jQuery 1.9.1
-            </p>
+            <ul class="breadcrumbs">
+                <li><a href="index.html">Home</a></li>
+                <li class="current"><a href="keys.html">Key Events</a></li>
+            </ul>
+            <div class="jquery-version">Using jQuery 1.9.1</div>
         </header>
 
         <div id="sidebar">
@@ -51,26 +52,23 @@
                 </label>
 
                 <label for="testInput">Dummy Text Input</label>
-                <input class="input-block-level" type="text" id="testInput" autofocus>
+                <input type="text" id="testInput" autofocus>
             </form>
         </div>
 
-        <div>
-            <table class="table table-bordered table-striped" id="output">
-                <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>Key Data</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
+        <table class="table table-bordered table-striped" id="output">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Key Data</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
 
     </div>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
     <script>
     (function($) {
         var prevent, output, header;
