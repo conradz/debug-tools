@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>WebSocket Client</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundation/4.1.2/css/foundation.min.css">
+    <style>
+        #container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        #log {
+            min-height: 200px;
+        }
+
+        #url, #data, #log {
+            font-family: "Anonymous Pro", Consolas, monospace, serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>WebSocket Client</h1>
+            <p>
+                <a href="index.html">&larr; Back to utilities</a>
+            </p>
+        </header>
+
+        <label for="url">WebSocket URL</label>
+        <div class="row collapse">
+            <div class="large-9 small-8 columns">
+                <input id="url" type="text">
+            </div>
+            <div class="large-3 small-4 columns">
+                <button class="prefix button" id="connect" class="button">Connect</button>
+            </div>
+        </div>
+
+        <label for="data">Send</label>
+        <div class="row collapse">
+            <div class="large-9 small-8 columns">
+                <input id="data" type="text" placeholder="Data">
+            </div>
+            <div class="large-3 small-4 columns">
+                <button id="send" class="button prefix">Send</button>
+            </div>
+        </div>
+
+        <label for="log">Log</label>
+        <div>
+            <textarea placeholder="Log" id="log"></textarea>
+        </div>
+    </div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="websockets.js"></script>
+</body>
+</html>
